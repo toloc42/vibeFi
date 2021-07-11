@@ -1,5 +1,5 @@
 /*utils*/
-function throttle(fn, threshhold, scope) {
+function throttle (fn, threshhold, scope) {
     threshhold || (threshhold = 250);
     var last,
         deferTimer;
@@ -74,8 +74,8 @@ const settings = new Proxy(settingsStore, {
 const setOutput = (key, value) => {
     const output = document.getElementById(key + 'Out');
     output && (output.innerHTML = Math.round(value));
-}
-const throttledSetOutput = throttle(setOutput, 150)
+};
+const throttledSetOutput = throttle(setOutput, 150);
 
 const _touch = ('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
 const eventsStart = _touch ? 'touchstart' : 'mousedown';
@@ -113,12 +113,12 @@ const activatePanel = (id) => {
     document.getElementById(id).classList.add('active');
 };
 
-document.addEventListener('DOMContentLoaded', (ev)=>{
-   let activePanel = 'onoff';
-   if (window.location.hash.length){
-       activePanel = window.location.hash.substr(1);
-   }
-   activatePanel(activePanel);
+document.addEventListener('DOMContentLoaded', (ev) => {
+    let activePanel = 'onoff';
+    if (window.location.hash.length) {
+        activePanel = window.location.hash.substr(1);
+    }
+    activatePanel(activePanel);
 });
 
 /*input listeners*/
@@ -264,27 +264,31 @@ document.addEventListener(eventsStop, (event) => {
 const pulseTouchPadMove = (event) => {
     const touchhighlight = document.getElementById('touchhighlight');
     const data = _touch ? event.touches[0] : event;
-    const el = event.currentTarget;
+    const el = event.currentTarget || event.target;
+
     const relX = data.pageX - el.offsetLeft;
-    let percX = Math.round((relX / el.offsetWidth) * 100);
-    percX = percX >= 95 ? 100 : percX;
+    let percX = round5((relX / el.offsetWidth) * 100);
+    percX = Math.min(Math.max(0, percX), 100);
+
     const relY = el.offsetHeight - (data.pageY - el.offsetTop);
-    let percY = Math.round((relY / el.offsetHeight) * 100);
-    percY = percY >= 95 ? 100 : percY;
-    touchhighlight.style.top = `${100-percY}%`;
+    let percY = round5((relY / el.offsetHeight) * 100);
+    percY = Math.min(Math.max(0, percY), 100);
+
+    touchhighlight.style.top = `${100 - percY}%`;
     touchhighlight.style.left = `${percX}%`;
-        let restartPulse = false;
+
+    let restartPulse = false;
     if (settings.pulse === 100 && percX !== 100
         || settings.pulse === 0 && percX !== 0
         || settings.maxMotorSpeed === 0 && percY !== 0) {
         restartPulse = true;
     }
     if (settings.maxMotorSpeed !== percY) {
-        throttledSetMaxMotorSpeed(round5(percY));
-        throttledSetMotorSpeed(round5(percY));
+        throttledSetMaxMotorSpeed((percY));
+        throttledSetMotorSpeed((percY));
     }
     if (settings.pulse !== percY) {
-        throttledSetPulse(round5(percX));
+        throttledSetPulse((percX));
     }
     restartPulse && pulseMotor();
 };
