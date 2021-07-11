@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>VibeFi</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+<button id="sideMenuToggle" title="Toggle sidebar"></button>
+<nav id="sidebar" class="collapsed">
+
+<!--    <button id="closer" class="sideMenuToggle" title="Close sidebar"></button>-->
+    <ul id="sidebarLinks">
+        <li class="sideBarLink">
+            <a class="sideBarLinkAnchor" data-tab="onoff" href="#onoff">Switch</a>
+        </li>
+        <li class="sideBarLink">
+            <a class="sideBarLinkAnchor" data-tab="plusminus" href="#plusminus">FineControl</a>
+        </li>
+        <li class="sideBarLink">
+            <a class="sideBarLinkAnchor" data-tab="slider" href="#slider">Slider</a>
+        </li>
+        <li class="sideBarLink">
+            <a class="sideBarLinkAnchor" data-tab="dualslider" href="#dualslider">DualSlider</a>
+        </li>
+        <li class="sideBarLink">
+            <a class="sideBarLinkAnchor" data-tab="simpleTouch" href="#simpleTouch">SimpleTouch</a>
+        </li>
+        <li class="sideBarLink">
+            <a class="sideBarLinkAnchor" data-tab="slideTouch" href="#slideTouch">SlideTouch</a>
+        </li>
+        <li class="sideBarLink">
+            <a class="sideBarLinkAnchor" data-tab="pulseTouch" href="#pulseTouch">PulseTouch</a>
+        </li>
+        <li class="sideBarLink">
+            <a class="sideBarLinkAnchor" data-tab="pulseGraph" href="#pulseGraph">PulseGraph</a>
+        </li>
+    </ul>
+
+</nav>
+<div id="content">
+    <span class="output">
+        <span id="motorSpeedOut">0</span>
+<!--        <span id="pulseOut">0</span>-->
+    </span>
+    <div class="panel" id="onoff">
+        <input type="checkbox" id="onoffcheck">
+        <label for="onoffcheck"></label>
+    </div>
+    <div class="panel" id="plusminus">
+        <div class="plusminus" id="plus"></div>
+        <div class="plusminus" id="minus"></div>
+    </div>
+    <div class="panel" id="slider">
+        <input type="range" id="input_slider" min="0" max="100" value="0"/>
+    </div>
+    <div class="panel" id="dualslider">
+        <div class="dualsliderwrapper">
+            <input type="range" id="input_dualslider_pulse" min="0" max="100" value="0"/>
+            <label for="input_dualslider_pulse">Pulse</label>
+        </div>
+        <div class="dualsliderwrapper">
+            <input type="range" id="input_dualslider_power" min="0" max="100" value="0"/>
+            <label for="input_dualslider_power">Power</label>
+        </div>
+    </div>
+    <div class="panel" id="simpleTouch">
+        <div id="simpleTouchPad"></div>
+    </div>
+    <div class="panel" id="slideTouch">
+        <input type="range" id="input_slide_touch" min="0" max="100" value="0"/>
+    </div>
+    <div class="panel" id="pulseTouch">
+        <div id="pulseTouchPadWrapper">
+            <div id="touchhighlight"></div>
+        </div>
+        <div id="pulseTouchPad"></div>
+    </div>
+    <div class="panel" id="pulseGraph">
+        Pulse
+    </div>
+
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
