@@ -255,7 +255,6 @@ pulseTouchPad.addEventListener(eventsStop, (event) => {
     pulseTouchPad.removeEventListener(eventsMove, throttledPulseTouchPadMove);
 });
 document.addEventListener(eventsStop, (event) => {
-    setMotorSpeed(0);
     setMaxMotorSpeed(0);
     setPulse(0);
     pulseTouchPadWrapper.classList.remove('active');
