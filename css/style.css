@@ -84,7 +84,7 @@ body {
   outline: none;
   background: black url("bars-solid.svg") center/50% no-repeat;
   transform: rotate(0);
-  margin: 20px;
+  margin: 5.7vw;
   cursor: pointer;
   z-index: 9999;
 }
@@ -132,18 +132,21 @@ body {
 #content .panel.active {
   display: flex;
 }
+#content #onoff, #content #plusminus {
+  flex-direction: column;
+}
 #content #onoff input, #content #plusminus input {
   display: none;
 }
-#content #onoff input:checked + label, #content #plusminus input:checked + label {
+#content #onoff input:checked + #onofflabel, #content #plusminus input:checked + #onofflabel {
   filter: saturate(100%);
   border-color: darkviolet;
   box-shadow: inset 0 0 5px 1px darkviolet;
 }
-#content #onoff input:checked + label:after, #content #plusminus input:checked + label:after {
+#content #onoff input:checked + #onofflabel:after, #content #plusminus input:checked + #onofflabel:after {
   filter: saturate(100%) brightness(120%);
 }
-#content #onoff label, #content #onoff .plusminus, #content #plusminus label, #content #plusminus .plusminus {
+#content #onoff #onofflabel, #content #onoff .plusminus, #content #plusminus #onofflabel, #content #plusminus .plusminus {
   border: #111 0.25rem solid;
   display: block;
   width: 60vw;
@@ -155,7 +158,7 @@ body {
   filter: saturate(50%);
   box-sizing: border-box;
 }
-#content #onoff label:after, #content #onoff .plusminus:after, #content #plusminus label:after, #content #plusminus .plusminus:after {
+#content #onoff #onofflabel:after, #content #onoff .plusminus:after, #content #plusminus #onofflabel:after, #content #plusminus .plusminus:after {
   content: "";
   position: absolute;
   top: 0;
@@ -164,6 +167,12 @@ body {
   height: 100%;
   filter: saturate(0%) brightness(50%);
   background: transparent url("./Off_font_awesome.svg") no-repeat center;
+}
+#content #onoff #onofflabel, #content #plusminus #onofflabel {
+  margin-top: auto;
+}
+#content #onoff .plusminus, #content #plusminus .plusminus {
+  filter: saturate(50%);
 }
 #content #onoff .plusminus.active, #content #plusminus .plusminus.active {
   filter: saturate(100%);
@@ -178,6 +187,26 @@ body {
 }
 #content #onoff .plusminus#minus:after, #content #plusminus .plusminus#minus:after {
   background-image: url("./Minus_font_awesome.svg");
+}
+#content #onoff input + #buzzzlabel, #content #plusminus input + #buzzzlabel {
+  display: inline-block;
+  font-size: 2rem;
+  margin: auto auto 2rem;
+}
+#content #onoff input + #buzzzlabel:before, #content #plusminus input + #buzzzlabel:before {
+  content: "";
+  display: inline-block;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: 0.5rem;
+  margin-bottom: -0.2rem;
+  background: transparent url("./square-regular.svg") no-repeat center;
+}
+#content #onoff input:checked + #buzzzlabel, #content #plusminus input:checked + #buzzzlabel {
+  text-shadow: 2px 2px 3px #51006f, 2px -2px 3px #51006f, -2px 2px 3px #51006f, -2px -2px 3px #51006f;
+}
+#content #onoff input:checked + #buzzzlabel:before, #content #plusminus input:checked + #buzzzlabel:before {
+  background: url("./square-regular.svg") no-repeat center, url("./check-square-regular.svg") no-repeat center;
 }
 #content #plusminus {
   flex-direction: column;
@@ -253,6 +282,9 @@ body {
   transform-origin: left;
   left: 47%;
 }
+#content #simpleTouch {
+  flex-direction: column;
+}
 #content #simpleTouch #simpleTouchPad {
   border: #111 0.25rem solid;
   display: block;
@@ -264,6 +296,7 @@ body {
   border-radius: 15%;
   filter: saturate(50%);
   box-sizing: border-box;
+  margin-top: auto;
 }
 #content #simpleTouch #simpleTouchPad:after {
   content: "";
@@ -273,7 +306,7 @@ body {
   width: 100%;
   height: 100%;
   filter: saturate(0%) brightness(50%);
-  background: transparent url("./Bolt_font_awesome.svg") no-repeat center;
+  background: transparent url("./fingerprint-solid.svg") center/66% no-repeat;
 }
 #content #simpleTouch #simpleTouchPad.active {
   filter: saturate(100%);
@@ -282,7 +315,30 @@ body {
 }
 #content #simpleTouch #simpleTouchPad.active:after {
   filter: saturate(100%) brightness(120%);
-  background: transparent url("./Bolt_font_awesome.svg") no-repeat center;
+  background: transparent url("./fingerprint-solid.svg") center/66% no-repeat;
+}
+#content #simpleTouch input {
+  display: none;
+}
+#content #simpleTouch input + #buzzztouchlabel {
+  display: inline-block;
+  font-size: 2rem;
+  margin: auto auto 2rem;
+}
+#content #simpleTouch input + #buzzztouchlabel:before {
+  content: "";
+  display: inline-block;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: 0.5rem;
+  margin-bottom: -0.2rem;
+  background: transparent url("./square-regular.svg") no-repeat center;
+}
+#content #simpleTouch input:checked + #buzzztouchlabel {
+  text-shadow: 2px 2px 3px #51006f, 2px -2px 3px #51006f, -2px 2px 3px #51006f, -2px -2px 3px #51006f;
+}
+#content #simpleTouch input:checked + #buzzztouchlabel:before {
+  background: url("./square-regular.svg") no-repeat center, url("./check-square-regular.svg") no-repeat center;
 }
 #content #pulseTouch #pulseTouchPadWrapper {
   position: relative;

@@ -62,6 +62,8 @@ const settingsStore = {
     maxMotorSpeed: 0,
     pulse: 0,
     pulseDirection: 'up',
+    randomWeight: 0,
+    randomDir: 1,
 };
 const settings = new Proxy(settingsStore, {
     set: function (target, key, value) {
@@ -295,7 +297,12 @@ const pulseTouchPadMove = (event) => {
 const throttledPulseTouchPadMove = throttle(pulseTouchPadMove, 50);
 
 /*pulse graph*/
+
 /* TODO pulse graph */
+
+function reqListener () {
+    console.log(this.responseText);
+}
 
 /*motor control*/
 const setMotorSpeed = (speed) => {
@@ -304,6 +311,11 @@ const setMotorSpeed = (speed) => {
     speed = Math.min(Math.max(0, speed), 100);
     if (settings.motorSpeed !== speed) {
         settings.motorSpeed = speed;
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener('load', reqListener);
+        const loc = window.location;
+        oReq.open('GET', `${loc.protocol}//${loc.hostname}:690?speed=${speed}`);
+        oReq.send();
     }
 };
 const throttledSetMotorSpeed = throttle(setMotorSpeed, 50);
@@ -340,10 +352,10 @@ const togglePulseDirection = () => {
 const pulseMotor = () => {
     if (settings.pulse === 0 || settings.maxMotorSpeed === 0) {
         setMotorSpeed(0);
-        console.log('pulse or maxSpeed 0');
+        // console.log('pulse or maxSpeed 0');
     } else if (settings.pulse === 100) {
         setMotorSpeed(settings.maxMotorSpeed);
-        console.log('maxSpeed 100');
+        // console.log('maxSpeed 100');
     } else {
         if (settings.pulseDirection === 'up') {
             if (settings.motorSpeed < settings.maxMotorSpeed) {
@@ -361,6 +373,20 @@ const pulseMotor = () => {
         setTimeout(pulseMotor, 500);
     }
 };
+
+const randomize = () => {
+    const rnd = parseInt(Math.random() * 20 + '');
+    settings.randomWeight++
+    if(settings.randomWeight > rnd || settings.motorSpeed === 0){
+        settings.randomDir *= -1;
+        settings.randomWeight = 0;
+        console.log('switch!');
+    }
+    const randVal = rnd * settings.randomDir
+    setMotorSpeed(settings.motorSpeed + randVal);
+};
+
+// setInterval(randomize, 250);
 
 /*reset on startup*/
 resetAllInputs();

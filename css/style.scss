@@ -91,7 +91,7 @@ body {
   outline: none;
   background: black url("bars-solid.svg") center / 50% no-repeat;
   transform: rotate(0);
-  margin: 20px;
+  margin: 5.7vw;
   cursor: pointer;
   z-index: 9999;
 
@@ -145,10 +145,11 @@ body {
   }
 
   #onoff, #plusminus {
+    flex-direction: column;
     input {
       display: none;
 
-      &:checked + label {
+      &:checked + #onofflabel {
         filter: saturate(100%);
         border-color: darkviolet;
         box-shadow: inset 0 0 5px 1px darkviolet;
@@ -159,7 +160,7 @@ body {
       }
     }
 
-    label, .plusminus {
+    #onofflabel, .plusminus {
       border: #111 .25rem solid;
       display: block;
       width: 60vw;
@@ -182,8 +183,12 @@ body {
         background: transparent url("./Off_font_awesome.svg") no-repeat center;
       }
     }
+    #onofflabel{
+      margin-top: auto;
+    }
 
     .plusminus {
+      filter: saturate(50%);
       &.active {
         filter: saturate(100%);
         border-color: darkviolet;
@@ -206,6 +211,30 @@ body {
         }
       }
     }
+    input{
+      + #buzzzlabel{
+        display: inline-block;
+        font-size: 2rem;
+        margin: auto auto 2rem;
+        &:before{
+          content: '';
+          display: inline-block;
+          width: 1.75rem;
+          height: 1.75rem;
+          margin-right: .5rem;
+          margin-bottom: -.2rem;
+          background: transparent url("./square-regular.svg") no-repeat center;
+        }
+      }
+      &:checked + #buzzzlabel {
+        text-shadow: 2px 2px 3px #51006f, 2px -2px 3px #51006f, -2px 2px 3px #51006f, -2px -2px 3px #51006f;
+        &:before{
+          background: url("./square-regular.svg") no-repeat center,
+                      url("./check-square-regular.svg") no-repeat center;
+        }
+      }
+    }
+
   }
 
   #plusminus {
@@ -296,6 +325,7 @@ body {
   }
 
   #simpleTouch {
+    flex-direction: column;
     #simpleTouchPad {
       border: #111 .25rem solid;
       display: block;
@@ -307,6 +337,7 @@ body {
       border-radius: 15%;
       filter: saturate(50%);
       box-sizing: border-box;
+      margin-top: auto;
 
       &:after {
         content: "";
@@ -316,7 +347,7 @@ body {
         width: 100%;
         height: 100%;
         filter: saturate(0%) brightness(50%);
-        background: transparent url("./Bolt_font_awesome.svg") no-repeat center;
+        background: transparent url("./fingerprint-solid.svg") center / 66% no-repeat;
       }
 
       &.active {
@@ -326,7 +357,32 @@ body {
 
         &:after {
           filter: saturate(100%) brightness(120%);
-          background: transparent url("./Bolt_font_awesome.svg") no-repeat center;
+          background: transparent url("./fingerprint-solid.svg") center / 66% no-repeat;
+        }
+      }
+    }
+
+    input{
+      display: none;
+      + #buzzztouchlabel{
+        display: inline-block;
+        font-size: 2rem;
+        margin: auto auto 2rem;
+        &:before{
+          content: '';
+          display: inline-block;
+          width: 1.75rem;
+          height: 1.75rem;
+          margin-right: .5rem;
+          margin-bottom: -.2rem;
+          background: transparent url("./square-regular.svg") no-repeat center;
+        }
+      }
+      &:checked + #buzzztouchlabel {
+        text-shadow: 2px 2px 3px #51006f, 2px -2px 3px #51006f, -2px 2px 3px #51006f, -2px -2px 3px #51006f;
+        &:before{
+          background: url("./square-regular.svg") no-repeat center,
+          url("./check-square-regular.svg") no-repeat center;
         }
       }
     }
