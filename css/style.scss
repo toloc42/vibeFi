@@ -361,10 +361,12 @@ body {
         }
       }
     }
+  }
 
+  #onoff, #simpleTouch{
     input{
       display: none;
-      + #buzzztouchlabel{
+      + #buzzztouchlabel, + #buzzzlabel{
         display: inline-block;
         font-size: 2rem;
         margin: auto auto 2rem;
@@ -378,11 +380,14 @@ body {
           background: transparent url("./square-regular.svg") no-repeat center;
         }
       }
-      &:checked + #buzzztouchlabel {
-        text-shadow: 2px 2px 3px #51006f, 2px -2px 3px #51006f, -2px 2px 3px #51006f, -2px -2px 3px #51006f;
-        &:before{
-          background: url("./square-regular.svg") no-repeat center,
-          url("./check-square-regular.svg") no-repeat center;
+      &:checked {
+        + #buzzztouchlabel, + #buzzzlabel {
+          text-shadow: 2px 2px 3px #51006f, 2px -2px 3px #51006f, -2px 2px 3px #51006f, -2px -2px 3px #51006f;
+
+          &:before {
+            background: url("./square-regular.svg") no-repeat center,
+            url("./check-square-regular.svg") no-repeat center;
+          }
         }
       }
     }
